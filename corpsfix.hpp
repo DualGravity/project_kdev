@@ -2,6 +2,7 @@
 #define CORPSFIX_HPP_INCLUDED
 
 #include "Initialisation.hpp"
+#include "def.hpp"
 #include "g_engine.hpp"
 
 class Corpsfix

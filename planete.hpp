@@ -2,6 +2,7 @@
 #define PLANETE_HPP_INCLUDED
 
 #include "Initialisation.hpp"
+#include "def.hpp"
 #include "corps.hpp"
 
 class Planete : public Corps
@@ -15,7 +16,6 @@ class Planete : public Corps
 	float get_radius_gravitation();
 	void firstPini();
 	void secondPini();
-
 	protected:
         float m_radius,ax, ay,angle,gravfac;
 

@@ -24,7 +24,6 @@ Corps(t_gen,t_name,t_world,t_density,t_friction,t_restitution,t_px,t_py,t_tx,t_t
 
 Planete::~Planete()
 {
-    //appeler destruteur
 }
 
 float Planete::get_radius_gravitation()
@@ -41,14 +40,6 @@ void Planete::firstPini() //Charge le G_fac  et la SCALE selon la planete
         m_radius = m_radius * SUN_SCALE;
 
 	}
-
-	else if (name == MOON_TEXTURE)
-	{
-        gravfac = MOON_GRAVIVITYFAC;
-        p_sprite->setScale(sf::Vector2f(MOON_SCALE,MOON_SCALE));
-        m_radius = m_radius * MOON_SCALE;
-
-	}
 	
 	else if (name == MERCURE_TEXTURE)
 	{
@@ -57,38 +48,67 @@ void Planete::firstPini() //Charge le G_fac  et la SCALE selon la planete
         m_radius = m_radius * MERCURE_SCALE;
 
 	}
+	
+	else if (name ==VENUS_TEXTURE)
+	{
+        gravfac = VENUS_GRAVIVITYFAC;
+        p_sprite->setScale(sf::Vector2f(VENUS_SCALE,VENUS_SCALE));
+        m_radius = m_radius * VENUS_SCALE;
+	}
+	
+	else if (name ==EARTH_TEXTURE)
+	{
+        gravfac = EARTH_GRAVIVITYFAC;
+        p_sprite->setScale(sf::Vector2f(EARTH_SCALE,EARTH_SCALE));
+        m_radius = m_radius * EARTH_SCALE;
+	}
+	
+		else if (name == MOON_TEXTURE)
+	{
+        gravfac = MOON_GRAVIVITYFAC;
+        p_sprite->setScale(sf::Vector2f(MOON_SCALE,MOON_SCALE));
+        m_radius = m_radius * MOON_SCALE;
+	}
+	
 }
-
 void Planete::secondPini()
 {
     if (name == SUN_TEXTURE)
 	{
-        b2Vec2 mun;
-        mun.x = 0;
-        mun.y = 0;
-        //p_dynamiquebody->SetLinearVelocity(mun);
-        p_dynamiquebody->ApplyForce(mun,p_dynamiquebody->GetWorldCenter(),true);
+        b2Vec2 sun;
+        sun.x = 0;
+        sun.y = 0;
+    p_dynamiquebody->ApplyLinearImpulse(sun,p_dynamiquebody->GetWorldCenter(),true);
 
 	}
-
-	else if (name == MOON_TEXTURE)
-	{
-        b2Vec2 mun;
-        mun.x = 0;
-        mun.y = 0;
-        //p_dynamiquebody->SetLinearVelocity(mun);
-        p_dynamiquebody->ApplyForce(mun,p_dynamiquebody->GetWorldCenter(),true);
-
-	}
-	
 	else if (name == MERCURE_TEXTURE)
 	{
         b2Vec2 mercure;
         mercure.x = 0;
-        mercure.y = 10000;
-        p_dynamiquebody->SetLinearVelocity(mercure);
-        //p_dynamiquebody->ApplyForce(mercure,p_dynamiquebody->GetWorldCenter(),true);
-
+        mercure.y = MERCURE_STARTSPEED;
+//         p_dynamiquebody->SetLinearVelocity(mercure);
+	p_dynamiquebody->ApplyLinearImpulse(mercure,p_dynamiquebody->GetWorldCenter(),true);
 	}
+	else if (name == VENUS_TEXTURE)
+	{
+        b2Vec2 sat;
+        sat.x = -VENUS_STARTSPEED;
+        sat.y = 0;
+	p_dynamiquebody->ApplyLinearImpulse(sat,p_dynamiquebody->GetWorldCenter(),true);
+	}
+	else if (name == EARTH_TEXTURE)
+	{
+        b2Vec2 sat;
+        sat.x = EARTH_STARTSPEED;
+        sat.y = 0;
+	p_dynamiquebody->ApplyLinearImpulse(sat,p_dynamiquebody->GetWorldCenter(),true);
+	}
+	else if (name == MOON_TEXTURE)
+	{
+        b2Vec2 mun;
+        mun.x = 300;
+        mun.y = 0;
 
+	p_dynamiquebody->ApplyLinearImpulse(mun,p_dynamiquebody->GetWorldCenter(),true);
+	}
 }

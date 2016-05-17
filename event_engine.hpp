@@ -10,7 +10,7 @@ class Event_engine
 	public:
 	Event_engine(sf::RenderWindow *t_app,Worldengine *t_world);
 	~Event_engine();
-	void step();
+	bool step();
 
 	protected:
 	sf::RenderWindow *p_app;

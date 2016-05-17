@@ -1,6 +1,7 @@
 
 #include "corpsfix.hpp"
 
+
 Corpsfix::Corpsfix(G_engine *t_gen,std::string name,b2World *t_world,float t_px, float t_py, float t_tx,float t_ty,float t_angledeg) :
 m_px(t_px),m_py(t_py),m_tx(t_tx),m_ty(t_ty),m_world(t_world),m_gen(t_gen),m_angledeg(t_angledeg)
 {
